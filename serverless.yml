@@ -1,0 +1,16 @@
+service: hello-world
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+  
+  
+functions:
+  currentTime:
+    handler: app.handler
+    events:
+      - httpApi:
+          path: /time
+          method: get
