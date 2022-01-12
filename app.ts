@@ -29,6 +29,5 @@ export async function hello(event:APIGatewayProxyEventV2) : Promise<APIGatewayPr
 
 
 // https://www.serverless.com/framework/docs/providers/aws/guide/credentials
-// export AWS_ACCESS_KEY_ID=AKIAUACF2XUCAPTFZ2ZS
-// export AWS_SECRET_ACCESS_KEY=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
+
 
