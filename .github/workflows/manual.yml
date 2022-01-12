@@ -51,6 +51,10 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Install Dependencies 
+      run: npm install
       - name: Download the build output
         uses: actions/download-artifact@v2
         with:
@@ -59,4 +63,4 @@ jobs:
         env: 
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: npx sls deploy
+        run: npx sls deploy --package ./my-artifact
