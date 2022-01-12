@@ -14,6 +14,7 @@ functions:
       - httpApi:
           path: /time
           method: get
+  helloHandler:
     handler: app.hello
     events:
       - httpApi:
