@@ -31,7 +31,7 @@ jobs:
 
   deployDev:
     name: Deploy
-    needs: [build]
+    needs: [BuildArtifact]
 
     # inputs:
     #   environment:
