@@ -49,6 +49,8 @@ jobs:
   deploy:
     name: Deploy
     needs: [build]
+    environment:
+      name: Dev
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -59,10 +61,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: my-artifact
+          path: ./app/
       - name: List dir
         run: ls -la
       - name: Deploy To AWS Dev
         env: 
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: npx sls deploy --package ./
+        run: npx sls deploy --package ./app
