@@ -43,12 +43,7 @@ jobs:
       with:
         name: my-artifact
         path: app/
-        retention-days: 5  
-    - name: Deploy To AWS Dev
-      env: 
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: npx sls deploy
+        retention-days: 5
       
 
   deploy:
