@@ -14,34 +14,36 @@ jobs:
     
 
     steps:
+      - name: test
+        run: echo "test hello"
     # Runs a single command using the runners shell
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-    - name: Install Dependencies 
-      run: npm install
-    - name: Compile Typescript
-      run: npx tsc app.ts
-    - name: Package
-      run: npx sls package --package app
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-artifact
-        path: app/
-        retention-days: 5
+    # - name: Checkout Repository
+    #   uses: actions/checkout@v2
+    # - name: Install Dependencies 
+    #   run: npm install
+    # - name: Compile Typescript
+    #   run: npx tsc app.ts
+    # - name: Package
+    #   run: npx sls package --package app
+    # - name: Upload Artifact
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: my-artifact
+    #     path: app/
+    #     retention-days: 5
       
 
-  deployDev:
-    name: Deploy
-    needs: [build]
-    conc
-    # inputs:
-    #   environment:
-    #     type: environment
-    runs-on: ubuntu-latest
-    steps:
-      - name: test
-        run: echo 'hello world'
+  # deployDev:
+  #   name: Deploy
+  #   needs: [build]
+  #   conc
+  #   # inputs:
+  #   #   environment:
+  #   #     type: environment
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: test
+  #       run: echo 'hello world'
       # - name: Checkout Repository
       #   uses: actions/checkout@v2
       # - name: Install Dependencies 
