@@ -32,10 +32,10 @@ jobs:
     # Runs a single command using the runners shell
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
     - name: Install
       run: npm install
+    - name: Compile
+      run: npx tsc app.ts
     - name: Deploy
       env: # Or as an environment variable
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
