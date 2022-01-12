@@ -32,7 +32,7 @@ jobs:
   deployDev:
     name: Deploy
     needs: [build]
-    conc
+
     # inputs:
     #   environment:
     #     type: environment
