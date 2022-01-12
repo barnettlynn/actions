@@ -14,3 +14,8 @@ functions:
       - httpApi:
           path: /time
           method: get
+    handler: app.hello
+    events:
+      - httpApi:
+          path: /hello
+          method: get
