@@ -14,15 +14,15 @@ export async function handler(event:APIGatewayProxyEventV2) : Promise<APIGateway
 }
 
 
-// export function hello(event, context, callback) {
-//     const response = {
-//         statusCode: 200,
-//         body: JSON.stringify({
-//           message: `Hello, hello`,
-//         }),
-//       };
-//       return response
-// }
+export async function hello(event:APIGatewayProxyEventV2) : Promise<APIGatewayProxyResultV2>{
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify({
+          message: `Hello, hello`,
+        }),
+      };
+      return response
+}
 
 
 
