@@ -8,7 +8,7 @@ on:
     types: [created]
 jobs:
   # This workflow contains a single job called "greet"
-  Build Artifact:
+  BuildArtifact:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
