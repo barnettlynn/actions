@@ -8,58 +8,54 @@ on:
     types: [created]
 jobs:
   # This workflow contains a single job called "greet"
-  build:
-    # The type of runner that the job will run on
+  Build Artifact:
     runs-on: ubuntu-latest
-    
-
     steps:
-      - name: test
-        run: echo "test hello"
-    # Runs a single command using the runners shell
-    # - name: Checkout Repository
-    #   uses: actions/checkout@v2
-    # - name: Install Dependencies 
-    #   run: npm install
-    # - name: Compile Typescript
-    #   run: npx tsc app.ts
-    # - name: Package
-    #   run: npx sls package --package app
-    # - name: Upload Artifact
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: my-artifact
-    #     path: app/
-    #     retention-days: 5
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Install Dependencies 
+      run: npm install
+    - name: Compile Typescript
+      run: npx tsc app.ts
+    - name: Package
+      run: npx sls package --package app
+    - name: list REFS
+      run: echo ${{env.GITHUB_REF_NAME}} && echo ${{env.GITHUB_REF}}
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: app/
+        retention-days: 5
       
 
-  # deployDev:
-  #   name: Deploy
-  #   needs: [build]
-  #   conc
-  #   # inputs:
-  #   #   environment:
-  #   #     type: environment
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: test
-  #       run: echo 'hello world'
-      # - name: Checkout Repository
-      #   uses: actions/checkout@v2
-      # - name: Install Dependencies 
-      #   run: npm install
-      # - name: Download the build output
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: my-artifact
-      #     path: ./app/
-      # - name: List dir
-      #   run: ls -la
-      # - name: Deploy To AWS Dev
-      #   env: 
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #   run: npx sls deploy --package ./app
+  deployDev:
+    name: Deploy
+    needs: [build]
+    conc
+    # inputs:
+    #   environment:
+    #     type: environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo 'hello world'
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Install Dependencies 
+        run: npm install
+      - name: Download the build output
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: ./app/
+      - name: List dir
+        run: ls -la
+      - name: Deploy To AWS Dev
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: npx sls deploy --package ./app
 
   # deployQA:
   #   name: DeployQA
