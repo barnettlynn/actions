@@ -38,6 +38,12 @@ jobs:
       run: npx tsc app.ts
     - name: Package
       run: npx sls package --package app
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: app/
+      retention-days: 5  
     - name: Deploy To AWS Dev
       env: 
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
