@@ -21,7 +21,6 @@ export function hello(event, context, callback) {
 }
 
 
-console.log("Hello world")
 
 
 
