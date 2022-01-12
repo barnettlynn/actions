@@ -49,9 +49,9 @@ jobs:
   deployDev:
     name: Deploy
     needs: [build]
-    inputs:
-      environment:
-        type: environment
+    # inputs:
+    #   environment:
+    #     type: environment
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
