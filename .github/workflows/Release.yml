@@ -20,7 +20,7 @@ jobs:
     - name: Package
       run: npx sls package --package app
     - name: list REFS
-      run: echo ${{env.GITHUB_REF_NAME}} && echo ${{env.GITHUB_REF}}
+      run: echo ${{env}} && echo ${{env.GITHUB_REF}}
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
