@@ -4,7 +4,9 @@ test("hello", () => {
   expect(1).toBe(1)
 }, 100)
 
-
+test("fail", () => {
+  expect(1).toBe(2)
+})
 
 
 
