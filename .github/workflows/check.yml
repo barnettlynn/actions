@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Release Workflow
+name: Merge Checks
 # concurrency: production
 
 on:
@@ -9,7 +9,7 @@ on:
      - main
 jobs:
   # This workflow contains a single job called "greet"
-  BuildArtifact:
+  MergeChecks:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
