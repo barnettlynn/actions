@@ -20,11 +20,11 @@ jobs:
     - name: Package
       run: npx sls package --package app
     - name: list REFS
-      run: env
+      run: echo ${{env.GITHUB_REF_NAME}} && echo ${{env.GITHUB_REF}}
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifact
+        name: ${{github.ref_name}}
         path: app/
         retention-days: 5
       
