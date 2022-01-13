@@ -1,0 +1,28 @@
+# This is a basic workflow that is manually triggered
+
+name: Dev Deploy
+# concurrency: production
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  # This workflow contains a single job called "greet"
+  DevDeploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: Dev
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Install Dependencies 
+      run: npm install
+    - name: Compile Typescript
+      run: npx tsc app.ts
+    - name: Deploy To AWS Dev
+      env: 
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: npx sls deploy
+      
