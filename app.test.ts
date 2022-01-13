@@ -5,6 +5,9 @@ test("hello", () => {
 }, 100)
 
 
+test("fail", () => {
+  expect(2).toBe(2)
+})
 
 
 
