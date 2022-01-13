@@ -14,7 +14,6 @@ on:
         required: false
         default: 'warning'
 jobs:
-  # This workflow contains a single job called "greet"
   MergeChecks:
     runs-on: ubuntu-latest
     steps:

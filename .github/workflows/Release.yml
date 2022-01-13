@@ -27,33 +27,6 @@ jobs:
         name: ${{github.ref_name}}
         path: app/
         retention-days: 5
-      
-
-  deployDev:
-    name: Deploy
-    needs: [BuildArtifact]
-    environment:
-      name: Dev
-    runs-on: ubuntu-latest
-    steps:
-      - name: test
-        run: echo 'hello world'
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Install Dependencies 
-        run: npm install
-      - name: Download the build output
-        uses: actions/download-artifact@v2
-        with:
-          name: ${{github.ref_name}}
-          path: ./app/
-      - name: List dir
-        run: ls -la
-      - name: Deploy To AWS Dev
-        env: 
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: npx sls deploy --package ./app
 
   deployQA:
     name: DeployQA

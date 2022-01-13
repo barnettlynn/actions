@@ -1,0 +1,31 @@
+# This is a basic workflow that is manually triggered
+
+name: Manually Deploy Artifact
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version To Deploy'
+        required: true
+      environment:
+        type: environment
+        required: true
+
+jobs:
+  ManualDeploy:
+    name: Deploy
+    environment:
+      name: ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the build output
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ github.event.inputs.version }}
+          path: ./app/
+      - name: Deploy To AWS
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: npx sls deploy --package ./app
