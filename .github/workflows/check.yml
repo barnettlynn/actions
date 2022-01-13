@@ -1,0 +1,23 @@
+# This is a basic workflow that is manually triggered
+
+name: Release Workflow
+# concurrency: production
+
+on:
+ pull_request:
+   branches:
+     - main
+jobs:
+  # This workflow contains a single job called "greet"
+  BuildArtifact:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Install Dependencies 
+      run: npm install
+    - name: Compile Typescript
+      run: npx tsc app.ts
+    - name: test
+      run: npm run test
+      
